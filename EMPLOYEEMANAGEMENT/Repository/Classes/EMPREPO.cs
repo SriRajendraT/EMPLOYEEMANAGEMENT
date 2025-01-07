@@ -73,8 +73,8 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  EMPDOJ = em.EMPDOJ,
-                                  EMPDOB = em.EMPDOB
+                                  //EMPDOJ = em.EMPDOJ,
+                                  //EMPDOB = em.EMPDOB
                               })
                               .Where(x => x.ACTIVEFLAG == YESORNO.YES
                                     && x.DELETEFLAG == YESORNO.NO
@@ -111,8 +111,8 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  EMPDOJ = em.EMPDOJ,
-                                  EMPDOB = em.EMPDOB
+                                  //EMPDOJ = em.EMPDOJ,
+                                  //EMPDOB = em.EMPDOB
                               })
                               .ToListAsync();
             return emps;
@@ -144,8 +144,8 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  EMPDOJ = em.EMPDOJ,
-                                  EMPDOB = em.EMPDOB
+                                  //EMPDOJ = em.EMPDOJ,
+                                  //EMPDOB = em.EMPDOB
                               })
                               .Where(x => x.ACTIVEFLAG == YESORNO.YES
                                     && x.DELETEFLAG == YESORNO.NO
@@ -181,8 +181,8 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  EMPDOJ = em.EMPDOJ,
-                                  EMPDOB = em.EMPDOB
+                                  //EMPDOJ = em.EMPDOJ,
+                                  //EMPDOB = em.EMPDOB
                               })
                               .Where(x => x.ACTIVEFLAG == YESORNO.YES
                                     && x.DELETEFLAG == YESORNO.NO
