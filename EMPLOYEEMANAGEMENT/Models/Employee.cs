@@ -15,8 +15,6 @@ namespace EMPLOYEEMANAGEMENT.Models
         public int EMPCITY { get; set; }
         public int EMPDEPT { get; set; }
         public decimal EMPSAL { get; set; }
-        //public DateTime EMPDOJ { get; set; }
-        //public DateTime EMPDOB { get; set; }
         public char ACTIVEFLAG { get; set; }
         public char DELETEFLAG { get; set; }
     }
