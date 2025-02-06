@@ -47,7 +47,7 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
             else return false;
         }
 
-        private async Task<Employee> getEmpById(int eid)
+        private async Task<EmpExt> getEmpById(int eid)
         {
             var emps = await (from em in _dbContext.Employees
                               join gnd in _dbContext.Genders on em.EMPGENDER equals gnd.GENDERID
@@ -73,8 +73,6 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  //EMPDOJ = em.EMPDOJ,
-                                  //EMPDOB = em.EMPDOB
                               })
                               .Where(x => x.ACTIVEFLAG == YESORNO.YES
                                     && x.DELETEFLAG == YESORNO.NO
@@ -90,9 +88,6 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                               join st in _dbContext.States on em.EMPSTATE equals st.STATEID
                               join ct in _dbContext.Cities on em.EMPCITY equals ct.CITYID
 
-                              where em.ACTIVEFLAG == YESORNO.YES && em.DELETEFLAG == YESORNO.NO
-                              orderby em.EMPID descending
-
                               select new EmpExt
                               {
                                   EMPID = em.EMPID,
@@ -111,9 +106,9 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  //EMPDOJ = em.EMPDOJ,
-                                  //EMPDOB = em.EMPDOB
                               })
+                              .Where(x => x.ACTIVEFLAG == YESORNO.YES && x.DELETEFLAG == YESORNO.NO)
+                              .OrderByDescending(x => x.EMPID)
                               .ToListAsync();
             return emps;
         }
@@ -144,55 +139,19 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                                   EMPCITYNAME = ct.CITYNAME,
                                   EMPDEPTNAME = dpt.DEPTNAME,
                                   EMPSAL = em.EMPSAL,
-                                  //EMPDOJ = em.EMPDOJ,
-                                  //EMPDOB = em.EMPDOB
                               })
                               .Where(x => x.ACTIVEFLAG == YESORNO.YES
                                     && x.DELETEFLAG == YESORNO.NO
                                     && x.EMPNAME.Contains(kv.value1))
-                                    .OrderBy(x => x.EMPNAME)
+                                    //.OrderBy(x => x.EMPNAME)
                                     .ToListAsync();
             return emps;
         }
 
         public async Task<EmpExt> GetEmpById(KeyValue kv)
         {
-            var emps = await (from em in _dbContext.Employees
-                              join gnd in _dbContext.Genders on em.EMPGENDER equals gnd.GENDERID
-                              join dpt in _dbContext.Departments on em.EMPDEPT equals dpt.DEPTID
-                              join st in _dbContext.States on em.EMPSTATE equals st.STATEID
-                              join ct in _dbContext.Cities on em.EMPCITY equals ct.CITYID
-
-                              select new EmpExt
-                              {
-                                  EMPID = em.EMPID,
-                                  EMPNAME = em.EMPNAME,
-                                  EMPEMAIL = em.EMPEMAIL,
-                                  EMPPHONE = em.EMPPHONE,
-                                  EMPADDRESS = em.EMPADDRESS,
-                                  EMPGENDER = em.EMPGENDER,
-                                  EMPDEPT = em.EMPDEPT,
-                                  EMPSTATE = em.EMPSTATE,
-                                  EMPCITY = em.EMPCITY,
-                                  ACTIVEFLAG = em.ACTIVEFLAG,
-                                  DELETEFLAG = em.DELETEFLAG,
-                                  EMPGENDERNAME = gnd.GENDERNAME,
-                                  EMPSTATENAME = st.STATENAME,
-                                  EMPCITYNAME = ct.CITYNAME,
-                                  EMPDEPTNAME = dpt.DEPTNAME,
-                                  EMPSAL = em.EMPSAL,
-                                  //EMPDOJ = em.EMPDOJ,
-                                  //EMPDOB = em.EMPDOB
-                              })
-                              .Where(x => x.ACTIVEFLAG == YESORNO.YES
-                                    && x.DELETEFLAG == YESORNO.NO
-                                    && x.EMPID == kv.key1).FirstOrDefaultAsync();
-            return emps;
-        }
-
-        public async Task<int> GetTotalEmployeeCount()
-        {
-            return await _dbContext.Employees.CountAsync(x => x.ACTIVEFLAG == YESORNO.YES && x.DELETEFLAG == YESORNO.NO);
+            var emp = await getEmpById(kv.key1);
+            return emp;
         }
     }
 }

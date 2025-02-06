@@ -9,6 +9,5 @@ namespace EMPLOYEEMANAGEMENT.Repository.Interfaces
         Task<EmpExt> GetEmpById(KeyValue kv);
         Task<bool> AddOrUpdateEmp(Employee employee);
         Task<bool> DeleteEmp(Employee employee);
-        Task<int> GetTotalEmployeeCount();
     }
 }

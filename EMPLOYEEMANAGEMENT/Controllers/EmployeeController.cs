@@ -19,7 +19,6 @@ namespace EMPLOYEEMANAGEMENT.Controllers
         [HttpPost("GetAllEmps")]
         public async Task<List<EmpExt>> GetAllEmps()
         {
-            var totalRecords = await _EREPO.GetTotalEmployeeCount();
             var emps = await _EREPO.GetAllEmps();
             return emps;
         }
