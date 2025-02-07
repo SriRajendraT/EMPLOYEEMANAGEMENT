@@ -143,7 +143,6 @@ namespace EMPLOYEEMANAGEMENT.Repository.Classes
                               .Where(x => x.ACTIVEFLAG == YESORNO.YES
                                     && x.DELETEFLAG == YESORNO.NO
                                     && x.EMPNAME.Contains(kv.value1))
-                                    //.OrderBy(x => x.EMPNAME)
                                     .ToListAsync();
             return emps;
         }
