@@ -2,8 +2,6 @@
 using EMPLOYEEMANAGEMENT.Repository.Classes;
 using EMPLOYEEMANAGEMENT.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Specialized;
 
 namespace EMPLOYEEMANAGEMENT
 {
